@@ -16,11 +16,11 @@ spec:
         app: {{ .Release.Name }}
     spec:
       containers:
-        - name: {{ .Release.Name }}-my_app
-          image: {{ .Values.container.image.repository }}:{{ .Values.container.image.tag }}
-          ports:
-              containerPort: {{ .Values.service.port }}
-              protocol: TCP
-          imagePullPolicy: {{ .Values.container.image.pullPolicy }}
-          resources:
+      - name: {{ .Release.Name }}-my_app
+        image: {{ .Values.container.image.repository }}:{{ .Values.container.image.tag }}
+        imagePullPolicy: {{ .Values.container.image.pullPolicy }}
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources:
             {{- toYaml .Values.resources | nindent 12 }}
