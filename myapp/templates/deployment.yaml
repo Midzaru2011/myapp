@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-deployment
+  name: {{ .Release.Name }}-my-app
   labels:
-    app: {{ .Release.Name }}-deployment
+    app: {{ .Release.Name }}-my-app
     release: {{ .Release.Name }}
 spec:
   replicas: {{ .Values.replicaCount }}
@@ -16,7 +16,7 @@ spec:
         app: {{ .Release.Name }}
     spec:
       containers:
-      - name: {{ .Release.Name }}-my_app
+      - name: {{ .Release.Name }}-my-app
         image: {{ .Values.container.image.repository }}:{{ .Values.container.image.tag }}
         imagePullPolicy: {{ .Values.container.image.pullPolicy }}
         ports:
