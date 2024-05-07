@@ -6,7 +6,7 @@ replicaCount: 3
 
 image:
   repository: midzaru2011/app
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   tag: latest
 
 
