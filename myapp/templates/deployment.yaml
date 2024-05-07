@@ -17,8 +17,8 @@ spec:
     spec:
       containers:
       - name: {{ .Release.Name }}-my-app
-        image: {{ .Values.container.image.repository }}:{{ .Values.container.image.tag }}
-        imagePullPolicy: {{ .Values.container.image.pullPolicy }}
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: 80
           protocol: TCP

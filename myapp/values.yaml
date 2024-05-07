@@ -4,11 +4,10 @@
 
 replicaCount: 3
 
-container:
-  image:
-    repository: midzaru2011/app
-    pullPolicy: IfNotPresent
-    tag: latest
+image:
+  repository: midzaru2011/app
+  pullPolicy: IfNotPresent
+  tag: latest
 
 
 service:
