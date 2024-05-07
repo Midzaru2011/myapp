@@ -8,7 +8,7 @@ container:
   image:
     repository: midzaru2011/app
     pullPolicy: IfNotPresent
-    tag: v1
+    tag: latest
 
 
 service:
