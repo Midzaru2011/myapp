@@ -50,7 +50,7 @@ pipeline {
             }
             steps {
                 script {
-                    sh "sed -i \'s/gitTag/\'$envTag\'/g\'HelmCharts/MyChart1/values.yaml"
+                    sh "sed -i \'/s/gitTag/\'$envTag\'/g\' /HelmCharts/MyChart1/values.yaml"
                 }
             }
         }
