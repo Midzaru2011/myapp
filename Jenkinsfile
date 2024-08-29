@@ -42,6 +42,15 @@ pipeline {
                     dockerImage.push("${gitTag}")                    
                 }
             }
+        stage(sed env)
+            environment {
+                envTag = ("${gitTag}")
+            }
+            steps{
+                script {
+                    sh "sed -i \'s/gitTag/\'$envTag\'/g\'HelmCharts/MyChart1/values.yaml"
+                }
+            }
         }
     }
 }
