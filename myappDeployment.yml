@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: my-app
-          image: midzaru2011/myapp:gitTag
+          image: midzaru2011/myapp:1.0.6
           imagePullPolicy: IfNotPresent
       terminationGracePeriodSeconds: 60 
 
