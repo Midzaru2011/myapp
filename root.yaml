@@ -1,0 +1,12 @@
+project: default
+source:
+  repoURL: 'git@github.com:Midzaru2011/argocd.git'
+  path: application
+  targetRevision: HEAD
+destination:
+  namespace: argocd
+  name: in-cluster
+syncPolicy:
+  automated:
+    prune: true
+    selfHeal: true
