@@ -42,6 +42,8 @@ pipeline {
                     dockerImage.push("${gitTag}")                    
                 }
             }
+            }
+        }
         stage('sed env')
             environment{
                 envTag = ("${gitTag}")
