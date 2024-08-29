@@ -36,7 +36,7 @@ pipeline {
             }
         }
         stage('Push docker image:tag'){
-            steps{
+            steps {
                 script {
                  docker.withRegistry( 'https://index.docker.io/v1/', registryCredential ){
                     dockerImage.push("${gitTag}")                    
@@ -44,14 +44,15 @@ pipeline {
             }
             }
         }
-        stage('sed env')
-            environment{
+        stage('Sed env') {
+            environment {
                 envTag = ("${gitTag}")
             }
-            steps{
+            steps {
                 script {
                     sh "sed -i \'s/gitTag/\'$envTag\'/g\'HelmCharts/MyChart1/values.yaml"
                 }
             }
         }
     }
+}
