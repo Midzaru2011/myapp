@@ -42,13 +42,6 @@ pipeline {
                     dockerImage.push("${gitTag}")                    
                 }
             }
-        stage('Deploying App to Kubernetes') {
-            steps {
-                script {
-                    kubernetesDeploy(configs: "myappDeployment.yml", kubeconfigId: "kubernetes")
-                    }
-                }    
-            }
         }
     }
 }
