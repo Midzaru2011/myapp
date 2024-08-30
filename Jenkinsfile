@@ -48,7 +48,8 @@ pipeline {
             steps{
                 script{
                     sh 'cat myappDeployment.yml'
-                    sh "sed -i 's|${IMAGE_NAME}.*|${IMAGE_NAME}:${IMAGE_TAG}|g' myappDeployment.yml"                  
+                    sh "sed -i 's|${IMAGE_NAME}.*|${IMAGE_NAME}:${IMAGE_TAG}|g' myappDeployment.yml"
+                    sh 'cat myappDeployment.yml'                    
                 }
             }
         }
