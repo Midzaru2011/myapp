@@ -43,6 +43,7 @@ pipeline {
                 }
             }
         }
+        }
         stage('Update tag'){
             steps{
                 sh """
@@ -53,5 +54,4 @@ pipeline {
             }
         }
     }
-}
 }
