@@ -35,7 +35,7 @@ pipeline {
                 }
             }
         }
-        stage('Push docker image:tag'){
+        stage('Push docker image:tag') {
             steps {
                 script {
                  docker.withRegistry( 'https://index.docker.io/v1/', registryCredential ){
