@@ -1,21 +1,21 @@
 pipeline {
     environment {
-        dockerImageName = "midzaru2011/myapp"
+        IMAGE_NAME = "midzaru2011/myapp"
         dockerImage = ""
         registryCredential = "dockerhub"
     }
     agent any
 
     stages {
-        stage('Delete workspace before build starts') {
+        stage('Delete workspace') {
             steps {
                 echo 'Deleting workspace'
-                deleteDir()
+                cleanWs()
             }
         }
         stage('Checkout branch'){
             steps{
-                git branch:'docker',
+                git branch:'main',
                 url: 'https://github.com/Midzaru2011/myapp.git'
             }
         }
@@ -24,14 +24,14 @@ pipeline {
                 script {
                     sh 'git fetch'
                     gitTag=sh(returnStdout:  true, script: "git tag --sort=-creatordate | head -n 1").trim()
-                    echo "gitTag output: ${gitTag}"
+                    echo "gitTag output: ${IMAGE_TAG}"
                 }      
             }
         }
         stage('Build docker image') {
             steps {
                 script {
-                    dockerImage = docker.build dockerImageName
+                    dockerImage = docker.build "${IMAGE_NAME}"
                 }
             }
         }
@@ -39,20 +39,20 @@ pipeline {
             steps {
                 script {
                  docker.withRegistry( 'https://index.docker.io/v1/', registryCredential ){
-                    dockerImage.push("${gitTag}")                    
+                    dockerImage.push("${IMAGE_TAG}")                    
                 }
             }
             }
         }
-        stage('Sed env') {
-            environment {
-                envTag = ("${gitTag}")
-            }
-            steps {
-                script {
-                    sh "sed -i \'/s/gitTag/\'$envTag\'/g\' /HelmCharts/MyChart1/values.yaml"
-                }
+        stage('Update tag'){
+            steps{
+                sh """
+                    cat myappDeployment.yml
+                    sed -i 's/${IMAGE_NAME}.*/${IMAGE_NAME}:${IMAGE_TAG}/g' myappDeployment.yml
+                    cat myappDeployment.yml
+                """
             }
         }
     }
 }
+
