@@ -1,1 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: my-app
+  name: my-app
+  namespace: jenkins
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+        - name: my-app
+          image: midzaru2011/myapp:1.0.10
+          imagePullPolicy: IfNotPresent
+      terminationGracePeriodSeconds: 60 
 
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app
+  namespace: jenkins
+spec:
+  ports:
+    - name: web
+      port: 80
+      targetPort: 80
+      nodePort: 30090
+  selector:
+    app: my-app
+  type: NodePort          
+  
