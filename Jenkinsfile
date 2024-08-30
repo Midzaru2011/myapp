@@ -48,7 +48,7 @@ pipeline {
             steps{
                 sh """
                     cat myappDeployment.yml
-                    sed -i 's/${IMAGE_NAME}.*/${IMAGE_NAME}:${IMAGE_TAG}/g' myappDeployment.yml
+                    "sed -i 's/${IMAGE_NAME}.*/${IMAGE_NAME}:${IMAGE_TAG}/g' myappDeployment.yml"
                     cat myappDeployment.yml
                 """
             }
