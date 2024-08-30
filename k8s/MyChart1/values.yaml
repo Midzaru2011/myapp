@@ -8,7 +8,7 @@ container:
   image:
     repository: midzaru2011/myapp
     pullPolicy: IfNotPresent
-    tag: 'gitTag'
+    tag: 1.0.7
 
 
 service:
