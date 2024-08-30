@@ -57,7 +57,7 @@ pipeline {
             steps {
                 sh """
                    git config --global user.name "Midzaru2011"
-                   git add myappDeployment.yml
+                   git add ${env.WORKSPACE}/k8s/MyChart1/values.yaml
                    git commit -m "Updated Deployment"
                 """
                 withCredentials([gitUsernamePassword(credentialsId: 'GitHub', gitToolName: 'Default')]) {
