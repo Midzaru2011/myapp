@@ -48,7 +48,7 @@ pipeline {
             steps{
                 script{
                     sh 'cat myappDeployment.yml'
-                    sh "sed -i 's|${IMAGE_NAME}.*|${IMAGE_NAME}:${IMAGE_TAG}|g' myappDeployment.yml"
+                    sh "sed -i 's|tag:.*|tag: ${IMAGE_TAG}|g' /k8s/MyChart1/values.yaml"
                     sh 'cat myappDeployment.yml'                    
                 }
             }
