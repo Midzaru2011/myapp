@@ -23,7 +23,7 @@ pipeline {
             steps {
                 script {
                     sh 'git fetch'
-                    gitTag=sh(returnStdout:  true, script: "git tag --sort=-creatordate | head -n 1").trim()
+                    IMAGE_TAG=sh(returnStdout:  true, script: "git tag --sort=-creatordate | head -n 1").trim()
                     echo "gitTag output: ${IMAGE_TAG}"
                 }      
             }
