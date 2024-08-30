@@ -53,5 +53,17 @@ pipeline {
                 }
             }
         }
+        stage("Push the changed deployment file to Git") {
+            steps {
+                sh """
+                   git config --global user.name "Midzaru2011"
+                   git add myappDeployment.yml
+                   git commit -m "Updated Deployment Manifest"
+                """
+                withCredentials([gitUsernamePassword(credentialsId: 'GitHub', gitToolName: 'Default')]) {
+                  sh "git push https://github.com/Midzaru2011/myapp.git main"
+                }
+            }
+        }           
     }
 }
