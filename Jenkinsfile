@@ -58,7 +58,7 @@ pipeline {
                 sh """
                    git config --global user.name "Midzaru2011"
                    git add myappDeployment.yml
-                   git commit -m "Updated Deployment Manifest"
+                   git commit -m "Updated Deployment"
                 """
                 withCredentials([gitUsernamePassword(credentialsId: 'GitHub', gitToolName: 'Default')]) {
                   sh "git push https://github.com/Midzaru2011/myapp.git main"
