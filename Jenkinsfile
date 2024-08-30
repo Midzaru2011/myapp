@@ -10,7 +10,7 @@ pipeline {
         stage('Delete workspace') {
             steps {
                 echo 'Deleting workspace'
-                cleanWs()
+                deleteDir()
             }
         }
         stage('Checkout branch'){
@@ -41,7 +41,6 @@ pipeline {
                  docker.withRegistry( 'https://index.docker.io/v1/', registryCredential ){
                     dockerImage.push("${IMAGE_TAG}")                    
                 }
-            }
             }
         }
         stage('Update tag'){
