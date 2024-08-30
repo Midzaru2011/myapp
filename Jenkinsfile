@@ -46,11 +46,11 @@ pipeline {
         }
         stage('Update tag'){
             steps{
-                sh """
-                    cat myappDeployment.yml
-                    "sed -i 's/${IMAGE_NAME}.*/${IMAGE_NAME}:${IMAGE_TAG}/g' myappDeployment.yml"
-                    cat myappDeployment.yml
-                """
+                script{
+                    sh 'cat myappDeployment.yml'
+                    sh "sed -i 's/${IMAGE_NAME}.*/${IMAGE_NAME}:${IMAGE_TAG}/g' myappDeployment.yml"
+                    sh 'cat myappDeployment.yml'                    
+                }
             }
         }
     }
