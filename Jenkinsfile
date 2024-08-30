@@ -47,9 +47,7 @@ pipeline {
         stage('Update tag'){
             steps{
                 script{
-                    sh 'cat ${env.WORKSPACE}/k8s/MyChart1/values.yaml'
-                    sh "sed -i 's|tag:.*|tag: ${IMAGE_TAG}|g' ${env.WORKSPACE}/k8s/MyChart1/values.yaml"
-                    sh 'cat ${env.WORKSPACE}/k8s/MyChart1/values.yaml'                    
+                    sh "sed -i 's|tag:.*|tag: ${IMAGE_TAG}|g' ${env.WORKSPACE}/k8s/MyChart1/values.yaml"                    
                 }
             }
         }
